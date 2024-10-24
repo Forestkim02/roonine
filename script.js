@@ -20,6 +20,27 @@ const whiteSmallBtn = document.getElementById('whiteSmall');
 const undoBtn = document.getElementById('undo'); // 返回上一步按鈕
 const resetBtn = document.getElementById('reset'); // 重新開始按鈕
 
+// 用來顯示剩餘棋子的元素
+const blackLargeCount = document.getElementById('blackLargeCount');
+const blackMediumCount = document.getElementById('blackMediumCount');
+const blackSmallCount = document.getElementById('blackSmallCount');
+const whiteLargeCount = document.getElementById('whiteLargeCount');
+const whiteMediumCount = document.getElementById('whiteMediumCount');
+const whiteSmallCount = document.getElementById('whiteSmallCount');
+
+// 更新剩餘棋子的顯示
+function updatePieceCounts() {
+  blackLargeCount.textContent = pieces.black.large;
+  blackMediumCount.textContent = pieces.black.medium;
+  blackSmallCount.textContent = pieces.black.small;
+  whiteLargeCount.textContent = pieces.white.large;
+  whiteMediumCount.textContent = pieces.white.medium;
+  whiteSmallCount.textContent = pieces.white.small;
+}
+
+// 初始化時先更新一次顯示
+updatePieceCounts();
+
 // 點擊棋子按鈕選擇棋子
 blackLargeBtn.addEventListener('click', () => selectPiece('black', 'large'));
 blackMediumBtn.addEventListener('click', () => selectPiece('black', 'medium'));
@@ -77,6 +98,7 @@ function handleCellClick(cell) {
       updateCellContent(cell, selectedPiece);
       board[index] = selectedPiece;
       pieces[selectedPiece.color][selectedPiece.size]--;
+      updatePieceCounts(); // 每次放置棋子後更新剩餘棋子數量
       selectedPiece = null;
       checkWin();
       if (gameActive) switchPlayer();
@@ -88,6 +110,7 @@ function handleCellClick(cell) {
     updateCellContent(cell, selectedPiece);
     board[index] = selectedPiece;
     pieces[selectedPiece.color][selectedPiece.size]--;
+    updatePieceCounts(); // 每次放置棋子後更新剩餘棋子數量
     selectedPiece = null;
     checkWin();
     if (gameActive) switchPlayer();
@@ -137,6 +160,7 @@ function undoMove() {
     }
 
     switchPlayer(); // 返回上一步後也要切換玩家
+    updatePieceCounts(); // 返回上一步後更新剩餘棋子數量
     message.textContent = `返回上一步，現在是 ${currentPlayer === 'black' ? '黑棋' : '白棋'} 的回合。`;
   } else {
     message.textContent = '無法返回，沒有更多的操作記錄。';
@@ -159,6 +183,7 @@ function resetGame() {
     cell.innerHTML = ''; // 清空棋盤上的顯示
   });
 
+  updatePieceCounts(); // 重新開始遊戲時更新剩餘棋子數量
   message.textContent = '已重新開始遊戲，黑棋先行。';
 }
 
@@ -171,16 +196,21 @@ function checkWin() {
     [0, 3, 6], // 縱向
     [1, 4, 7],
     [2, 5, 8],
-    [0, 4, 8], // 對角線
+    [0, 4, 8], // 斜向
     [2, 4, 6]
   ];
 
   for (const pattern of winPatterns) {
     const [a, b, c] = pattern;
     if (board[a] && board[a].color === board[b]?.color && board[a].color === board[c]?.color) {
-      gameActive = false; // 遊戲結束
-      message.textContent = `${board[a].color === 'black' ? '黑棋' : '白棋'} 勝利！請重新開始遊戲。`;
+      gameActive = false;
+      message.textContent = `${board[a].color === 'black' ? '黑棋' : '白棋'} 獲勝！`;
       return;
     }
+  }
+
+  if (board.every(cell => cell)) {
+    gameActive = false;
+    message.textContent = '平局！';
   }
 }

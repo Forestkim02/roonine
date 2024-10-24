@@ -90,3 +90,14 @@ button {
   font-size: 20px;
   color: red;
 }
+
+#remainingPieces {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+#remainingPieces div {
+    text-align: center;
+    font-size: 18px;
+}
