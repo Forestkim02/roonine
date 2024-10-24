@@ -1,0 +1,92 @@
+/* style.css */
+body {
+  font-family: Arial, sans-serif;
+  height: 100vh; /* 讓頁面高度占滿視窗 */
+  margin: 0;
+  display: flex;
+  justify-content: center; /* 水平置中 */
+  align-items: center; /* 垂直置中 */
+  flex-direction: column; /* 讓棋盤和控制區域垂直排列 */
+  text-align: center;
+}
+
+#board {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+  gap: 5px;
+  margin-bottom: 20px; /* 棋盤與控制區域之間留點距離 */
+}
+
+.cell {
+  width: 100px;
+  height: 100px;
+  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  background-color: lightgray;
+}
+
+.cell span {
+  font-size: 24px;
+}
+
+.cell span:first-child {
+  font-size: 48px; /* 棋子符號的大小 */
+}
+
+.cell span:last-child {
+  font-size: 16px; /* 大中小的標籤大小 */
+}
+
+.piece {
+  margin: 10px;
+  padding: 10px;
+  font-size: 18px;
+}
+
+#controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#message {
+  margin-top: 20px;
+  font-size: 20px;
+  color: red;
+}
+#controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px; /* 與棋盤保持距離 */
+}
+
+#buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px; /* 讓按鈕與控制區域保持距離 */
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#message {
+  margin-top: 20px;
+  font-size: 20px;
+  color: red;
+}

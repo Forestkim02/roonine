@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>九宮格</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="board">
+    <div class="cell" data-index="0"></div>
+    <div class="cell" data-index="1"></div>
+    <div class="cell" data-index="2"></div>
+    <div class="cell" data-index="3"></div>
+    <div class="cell" data-index="4"></div>
+    <div class="cell" data-index="5"></div>
+    <div class="cell" data-index="6"></div>
+    <div class="cell" data-index="7"></div>
+    <div class="cell" data-index="8"></div>
+  </div>
+
+  <div id="controls">
+    <button id="blackLarge">黑棋 (大)</button>
+    <button id="blackMedium">黑棋 (中)</button>
+    <button id="blackSmall">黑棋 (小)</button>
+    <button id="whiteLarge">白棋 (大)</button>
+    <button id="whiteMedium">白棋 (中)</button>
+    <button id="whiteSmall">白棋 (小)</button>
+  </div>
+
+  <div id="buttons">
+    <button id="undo">返回上一步</button>
+    <button id="reset">重新開始</button>
+  </div>
+
+  <div id="message">黑棋先。</div>
+  <footer>
+    <p>&copy; 2024 森林Blog. All rights reserved.</p>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
